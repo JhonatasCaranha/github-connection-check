@@ -1,23 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Página de Teste" },
+      { name: "description", content: "Uma página de teste simples." },
+      { property: "og:title", content: "Página de Teste" },
+      { property: "og:description", content: "Uma página de teste simples." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="flex min-h-screen items-center justify-center bg-background px-6">
+      <div className="max-w-lg text-center">
+        <h1 className="text-5xl font-bold tracking-tight text-foreground">Página de Teste</h1>
+        <p className="mt-4 text-lg text-muted-foreground">
+          Se você está vendo isto, a página foi criada e salva com sucesso.
+        </p>
+      </div>
+    </main>
   );
 }
